@@ -1,7 +1,14 @@
-import React,{useState} from "react";
+import React,{useContext, useState} from "react";
 import { useNavigate } from 'react-router-dom';
+import {AlertContext} from "../context/Alert/AlertContext";
+import AuthContext from "../context/AuthCheck/AuthContext";
 
 function Signup() {
+  const context=useContext(AlertContext);
+  const {showAlert}=context;
+  const context2=useContext(AuthContext);
+  const {setAuth}=context2;
+
     const [credentials,setCredentials]=useState({name:"",email:"",password:"",cpassword:""})
     let navigate = useNavigate();
     const handleSubmit=async(e)=>{
@@ -14,14 +21,16 @@ function Signup() {
             body: JSON.stringify({ name:credentials.name, email:credentials.email , password:credentials.password}),
           });
           const json = await response.json();
-          console.log(json);
+          
           if (json.success) {
               //save auth token and redirect
-              localStorage.setItem('token',json.authtoken);
-                navigate(`/`)
+              localStorage.setItem('token',json.authToken);
+              showAlert("Sign-Up done successfully!","success");
+              setAuth(true)
+              navigate(`/`)
           }
           else{
-              alert("Invalid Credentials")
+            showAlert("Invalid Credentials!","danger");
           }
     }
     const onChange=(e)=>{
@@ -30,6 +39,9 @@ function Signup() {
 
   return (
     <div>
+
+      <h2 className="d-flex justify-content-center">Sign-Up to Apni-Diary</h2>
+
       <form onSubmit={handleSubmit} >
         <div className="form-floating mb-3">
           <input
@@ -39,9 +51,11 @@ function Signup() {
             name="name"
             value={ credentials.name }
             onChange={onChange}
+            minLength={2} required
           />
           <label htmlFor="name">Name</label>
         </div>
+        
         <div className="form-floating mb-3">
           <input
             type="email"
@@ -77,10 +91,12 @@ function Signup() {
           />
           <label htmlFor="cpassword">Confirm Password</label>
         </div>
-
-        <button dtype="submit" className="btn btn-primary">
+        <div className="d-flex justify-content-center">
+        <button dtype="submit" className="btn btn-primary ">
           Submit
         </button>
+
+        </div>
       </form>
     </div>
   )

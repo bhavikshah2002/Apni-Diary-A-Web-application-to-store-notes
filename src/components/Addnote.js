@@ -1,9 +1,12 @@
 import React,{useState,useContext} from "react";
 import noteContext from '../context/Notes/NoteContext';
+import { AlertContext } from "../context/Alert/AlertContext";
 
 function Addnote() {
     const context=useContext(noteContext);
     const { addNote }=context;
+    const context2=useContext(AlertContext);
+    const {showAlert}=context2;
     const [note,setNote]=useState({title:"",description:"",tag:""})
     const onChange=(e)=>{
         setNote({...note,[e.target.name]:e.target.value})
@@ -12,6 +15,7 @@ function Addnote() {
         e.preventDefault()
         addNote(note.title,note.description,note.tag);
         setNote({title:"",description:"",tag:""})
+        showAlert("Note Added Successfully!","success")
     }
   return (
     <div className="container">
@@ -61,10 +65,12 @@ function Addnote() {
             minLength={2} required
           />
         </div>
-         
+         <div className="d-flex justify-content-center">
         <button disabled={note.title.length<3 || note.description.length<5 } type="submit" onClick={handleClick} className="btn btn-primary">
           Add Note
         </button>
+
+         </div>
       </form>
     </div>
   );

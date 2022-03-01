@@ -1,4 +1,5 @@
 import './App.css';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,16 +12,24 @@ import NoteState from './context/Notes/NoteState';
 import Alert from './components/Alert';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import AlertState from './context/Alert/AlertState';
+import AuthState from './context/AuthCheck/AuthState';
+
 
 function App() {
   return (
     <>
+
+    <AuthState>
+
+    <AlertState>
     <NoteState>
       <Router>
         <NavBar navType='dark' bgColor="#358297"  textColor="white" />
-        <Alert message={"Successful Alert"}/>
+        < Alert />
          <div className="container my-3">
           <Routes>
+
               <Route exact path='/' element={<Home/>}></Route> 
               <Route exact path='/about' element={< About/>}></Route> 
               <Route exact path='/login' element={< Login />}></Route> 
@@ -29,6 +38,9 @@ function App() {
          </div>
       </Router>
     </NoteState>
+    </AlertState>
+    </AuthState>
+
     </>
   );
 }

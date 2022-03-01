@@ -2,12 +2,21 @@ import React, { useContext, useEffect, useRef,useState } from "react";
 import noteContext from "../context/Notes/NoteContext";
 import Addnote from "./Addnote";
 import Noteitem from "./Noteitem";
+import { AlertContext } from "../context/Alert/AlertContext";
 
-function Notes() {
+
+
+ function Notes() {
   const context = useContext(noteContext);
   const { notes, getallNote,editNote} = context;
-  useEffect(() => {
-    getallNote();
+  const context2=useContext(AlertContext);
+  const {showAlert}=context2;
+
+ 
+   useEffect(() => {
+     if( localStorage.getItem('token')!==null){
+       getallNote();
+     }
     //eslint-disable-next-line
   }, []);
   const ref = useRef(null);
@@ -24,6 +33,7 @@ const handleClick=(e)=>{
     
     editNote(note.id,note.etitle,note.edescription,note.etag);
     refClose.current.click();
+    showAlert("Note Updated Successfully!","success")
     
 }
 
@@ -38,7 +48,7 @@ const handleClick=(e)=>{
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        Launch demo modal
+        Button Here
       </button>
 
       {/* <!-- Modal --> */}
@@ -129,7 +139,7 @@ const handleClick=(e)=>{
       <div className="conainer">
         {notes.length === 0 && "No notes to display!" }
       </div>
-      {notes.map((notes) => {
+      { notes.map((notes) => {
         return (
           <Noteitem key={notes._id} note={notes} updateNote={updateNote} />
         );
