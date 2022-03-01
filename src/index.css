@@ -14,3 +14,13 @@ code {
 i{
   cursor: pointer;
 }
+.btn-primary-c{
+  color: #fff;
+  background-color: #358297;
+  border-color: #358297;
+}
+.btn-primary-c:hover{
+  color: rgb(233, 224, 224);
+  background-color: #286677;
+  border-color: #286677;
+}

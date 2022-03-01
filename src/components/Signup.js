@@ -2,13 +2,15 @@ import React,{useContext, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import {AlertContext} from "../context/Alert/AlertContext";
 import AuthContext from "../context/AuthCheck/AuthContext";
+import signupimg from "../images/signup.PNG"
+import "animate.css";
 
 function Signup() {
   const context=useContext(AlertContext);
   const {showAlert}=context;
   const context2=useContext(AuthContext);
   const {setAuth}=context2;
-
+  const [animation,setAnimation]=useState(true);
     const [credentials,setCredentials]=useState({name:"",email:"",password:"",cpassword:""})
     let navigate = useNavigate();
     const handleSubmit=async(e)=>{
@@ -38,10 +40,16 @@ function Signup() {
     }
 
   return (
-    <div>
+    <>
+      <h1 className="d-flex justify-content-center mb-5"style={{fontFamily:"Bebas Neue",color:"#358297"}} >Sign-Up to Apni-Diary</h1>
+      <div className="d-sm-block d-md-flex justify-content-between"> 
+      <div className="container">
+        <div className=" d-flex justify-content-center ">
 
-      <h2 className="d-flex justify-content-center">Sign-Up to Apni-Diary</h2>
-
+              <img src={signupimg} className={`img-thumbnail animate__animated animate__pulse ${setTimeout(()=>setAnimation(!animation),5000)} ${animation?"animate__infinite":""}`} style={{border:'none'}} alt="Cinque Terre"/>
+        </div>
+      </div>
+      <div className="w-75 d-md-inline-block">     
       <form onSubmit={handleSubmit} >
         <div className="form-floating mb-3">
           <input
@@ -92,13 +100,15 @@ function Signup() {
           <label htmlFor="cpassword">Confirm Password</label>
         </div>
         <div className="d-flex justify-content-center">
-        <button dtype="submit" className="btn btn-primary ">
+        <button dtype="submit" className="btn btn-primary-c ">
           Submit
         </button>
 
         </div>
       </form>
+      </div>
     </div>
+    </>
   )
 }
 
