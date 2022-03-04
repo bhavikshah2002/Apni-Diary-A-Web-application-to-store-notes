@@ -41,7 +41,7 @@ function Signup() {
 
   return (
     <>
-      <h1 className="d-flex justify-content-center mb-5"style={{fontFamily:"Bebas Neue",color:"#358297"}} >Sign-Up to Apni-Diary</h1>
+      <h1 className="d-flex justify-content-center mb-5 animate__animated animate__backInDown animate__slow "style={{fontFamily:"Bebas Neue",color:"#358297"}} >Sign-Up to Apni-Diary</h1>
       <div className="d-sm-block d-md-flex justify-content-between"> 
       <div className="container">
         <div className=" d-flex justify-content-center ">
@@ -50,7 +50,7 @@ function Signup() {
         </div>
       </div>
       <div className="w-75 d-md-inline-block">     
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit} style={{fontFamily:"Bebas Neue",color:"#358297", fontSize:'20px'}} >
         <div className="form-floating mb-3">
           <input
             type="text"
@@ -60,6 +60,7 @@ function Signup() {
             value={ credentials.name }
             onChange={onChange}
             minLength={2} required
+            style={{fontFamily:"system-ui",color:"rgb(10 76 94)",fontSize:'17px'}}
           />
           <label htmlFor="name">Name</label>
         </div>
@@ -72,6 +73,7 @@ function Signup() {
             name="email"
             value={ credentials.email }
             onChange={onChange}
+            style={{fontFamily:"system-ui",color:"rgb(10 76 94)",fontSize:'17px'}}
           />
           <label htmlFor="email">Email address</label>
         </div>
@@ -84,6 +86,7 @@ function Signup() {
             value={ credentials.password }
             onChange={onChange}
             minLength={5} required
+            style={{fontFamily:"system-ui",color:"rgb(10 76 94)",fontSize:'17px'}}
           />
           <label htmlFor="password">Password</label>
         </div>
@@ -96,6 +99,7 @@ function Signup() {
             value={ credentials.cpassword }
             onChange={onChange}
             minLength={5} required
+            style={{fontFamily:"system-ui",color:"rgb(10 76 94)",fontSize:'17px'}}
           />
           <label htmlFor="cpassword">Confirm Password</label>
         </div>

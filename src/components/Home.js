@@ -8,7 +8,6 @@ function Home() {
   const context2=useContext(AuthContext);
   const {auth}=context2;
   useEffect(()=>{
-    console.log(localStorage.getItem('token'))
     if (!auth) {
       navigate(`/login`);
     }
