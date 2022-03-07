@@ -1,17 +1,16 @@
 import React,{useContext, useState} from "react";
 import { useNavigate } from 'react-router-dom';
-import {AlertContext} from "../context/Alert/AlertContext";
 import AuthContext from "../context/AuthCheck/AuthContext";
 import 'animate.css';
-import loginimg from "../images/login.jpg"
+import loginimg from "../images/login2.PNG"
+import { useAlert } from 'react-alert'
 function Login() {
-  const [animation,setAnimation]=useState(true);
-    const context=useContext(AlertContext);
-    const {showAlert}=context;
+  var [animation,setAnimation]=useState(true);
     const context2=useContext(AuthContext);
     const {setAuth}=context2;
     const [credentials,setCredentials]=useState({email:"",password:""})
     let navigate = useNavigate();
+    const Alert=useAlert();
     const handleSubmit=async(e)=>{
       localStorage.setItem('token',null)
         e.preventDefault();
@@ -26,20 +25,20 @@ function Login() {
         
           if (json.success) {
               //save auth token and redirect
-              showAlert("LogedIn Successfully!","success")
+              Alert.success("LogedIn Successfully!")
               localStorage.setItem('token',json.authToken)
               setAuth(true);
               navigate(`/`)
           }
           else{
-              showAlert("Invalid Details!","danger")
+              Alert.error("Invalid Details!")
           }
     }
-    const onChange=(e)=>{
-        setCredentials({...credentials,[e.target.name]:e.target.value})
+     const onChange=  (e)=>{
+      setCredentials({...credentials,[e.target.name]:e.target.value})
     }
   return (
-    <div className="mt-4 conatiner">
+    <div className="conatiner justify-content-center" style={{marginTop:"7rem"}}  >
       <h1 className="d-flex justify-content-center animate__animated animate__backInDown animate__slow" style={{fontFamily:"Bebas Neue",color:"#358297"}} >Login to access your 'Apni-Diary'</h1>
 
       <div className="d-sm-block d-md-flex justify-content-around flex-md-row-reverse " style={{marginTop:"25px" }}>
@@ -79,7 +78,7 @@ function Login() {
           </div>
           <div className="d-flex align-items-center justify-content-center">
 
-          <button dtype="submit" className="btn btn-primary-c ">
+          <button dtype="submit" className="btn btn-primary-c "  >
             Submit
           </button>
           </div>

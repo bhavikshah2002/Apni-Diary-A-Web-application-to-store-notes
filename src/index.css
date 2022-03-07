@@ -24,3 +24,12 @@ i{
   background-color: #286677;
   border-color: #286677;
 }
+:root,#root{
+  background-color: #cddce9;
+}
+.img-thumbnail {
+  background-color:#cddce9;
+}
+.form-floating input{
+  border-radius: 35px;
+}

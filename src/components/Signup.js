@@ -1,18 +1,18 @@
 import React,{useContext, useState} from "react";
 import { useNavigate } from 'react-router-dom';
-import {AlertContext} from "../context/Alert/AlertContext";
 import AuthContext from "../context/AuthCheck/AuthContext";
-import signupimg from "../images/signup.PNG"
+import signupimg from "../images/signup2.PNG"
 import "animate.css";
+import { useAlert } from "react-alert";
 
 function Signup() {
-  const context=useContext(AlertContext);
-  const {showAlert}=context;
+
   const context2=useContext(AuthContext);
   const {setAuth}=context2;
   const [animation,setAnimation]=useState(true);
     const [credentials,setCredentials]=useState({name:"",email:"",password:"",cpassword:""})
     let navigate = useNavigate();
+    const Alert=useAlert();
     const handleSubmit=async(e)=>{
         e.preventDefault();
         const response= await fetch(`http://localhost:5000/api/auth/createuser`, {
@@ -27,12 +27,14 @@ function Signup() {
           if (json.success) {
               //save auth token and redirect
               localStorage.setItem('token',json.authToken);
-              showAlert("Sign-Up done successfully!","success");
+
+              Alert.success("Sign-Up done successfully!")
               setAuth(true)
               navigate(`/`)
           }
           else{
-            showAlert("Invalid Credentials!","danger");
+
+            Alert.error("Invalid Credentials!")
           }
     }
     const onChange=(e)=>{

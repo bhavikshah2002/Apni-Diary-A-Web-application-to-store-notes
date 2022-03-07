@@ -2,22 +2,24 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../images/logo2.PNG";
 import AuthContext from "../context/AuthCheck/AuthContext";
-import { AlertContext } from "../context/Alert/AlertContext";
+import { useAlert } from "react-alert";
 
 function NavBar(props) {
-  const context = useContext(AlertContext);
-  const { showAlert } = context;
   const context2 = useContext(AuthContext);
   const { auth, setAuth } = context2;
   let location = useLocation();
+  const Alert=useAlert();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    showAlert("Logged Out Sucessfully!", "success");
+
+    Alert.success("Logged Out Sucessfully!")
     setAuth(false);
   };
   return (
+    <>
+
     <nav
-      className={`navbar navbar-expand-lg navbar-${props.navType} `}
+      className={`navbar fixed-top navbar-expand-lg navbar-${props.navType} `}
       style={{
         backgroundColor: `${props.bgColor}`,
         color: `${props.textColor}`,
@@ -103,6 +105,9 @@ function NavBar(props) {
         </div>
       </div>
     </nav>
+
+    <div style={{marginBottom:"100px"}} ></div>
+    </>
   );
 }
 NavBar.defaultProps = {

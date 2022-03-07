@@ -2,15 +2,14 @@ import React, { useContext, useEffect, useRef,useState } from "react";
 import noteContext from "../context/Notes/NoteContext";
 import Addnote from "./Addnote";
 import Noteitem from "./Noteitem";
-import { AlertContext } from "../context/Alert/AlertContext";
+import { useAlert } from "react-alert";
 
 
 
  function Notes() {
   const context = useContext(noteContext);
   const { notes, getallNote,editNote} = context;
-  const context2=useContext(AlertContext);
-  const {showAlert}=context2;
+
 
  
    useEffect(() => {
@@ -29,11 +28,13 @@ import { AlertContext } from "../context/Alert/AlertContext";
   const onChange=(e)=>{
     setNote({...note,[e.target.name]:e.target.value})
 }
+const Alert =useAlert();
 const handleClick=(e)=>{
     
     editNote(note.id,note.etitle,note.edescription,note.etag);
     refClose.current.click();
-    showAlert("Note Updated Successfully!","success")
+    Alert.success("Note Updated Successfully!");
+
     
 }
 
