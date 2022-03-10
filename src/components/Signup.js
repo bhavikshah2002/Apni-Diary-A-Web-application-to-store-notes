@@ -42,7 +42,7 @@ function Signup() {
     }
 
   return (
-    <>
+    <div className="">
       <h1 className="d-flex justify-content-center mb-5 animate__animated animate__backInDown animate__slow "style={{fontFamily:"Bebas Neue",color:"#358297"}} >Sign-Up to Apni-Diary</h1>
       <div className="d-sm-block d-md-flex justify-content-between"> 
       <div className="container">
@@ -114,7 +114,7 @@ function Signup() {
       </form>
       </div>
     </div>
-    </>
+    </div>
   )
 }
 

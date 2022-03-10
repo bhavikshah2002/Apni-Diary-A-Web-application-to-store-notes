@@ -38,7 +38,7 @@ function Login() {
       setCredentials({...credentials,[e.target.name]:e.target.value})
     }
   return (
-    <div className="conatiner justify-content-center" style={{marginTop:"7rem"}}  >
+    <div className="conatiner justify-content-center " style={{marginTop:"7rem"}}  >
       <h1 className="d-flex justify-content-center animate__animated animate__backInDown animate__slow" style={{fontFamily:"Bebas Neue",color:"#358297"}} >Login to access your 'Apni-Diary'</h1>
 
       <div className="d-sm-block d-md-flex justify-content-around flex-md-row-reverse " style={{marginTop:"25px" }}>

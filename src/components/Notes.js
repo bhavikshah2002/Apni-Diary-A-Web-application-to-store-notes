@@ -41,6 +41,8 @@ const handleClick=(e)=>{
   return (
     <div className="container row my-3">
       <Addnote />
+      
+
       {/* <!-- Button trigger modal --> */}
       <button
         ref={ref}
@@ -49,7 +51,7 @@ const handleClick=(e)=>{
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        Button Here
+        Launch demo modal
       </button>
 
       {/* <!-- Modal --> */}
